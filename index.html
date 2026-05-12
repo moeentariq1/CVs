@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moeen Tariq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: #eeeee9;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px 48px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    align-self: center;
+  }
+
+  .toolbar-label {
+    font-size: 12px;
+    color: #888;
+    font-family: inherit;
+  }
+
+  .btn {
+    padding: 8px 22px;
+    background: #0f172a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.2px;
+    transition: background 0.15s;
+  }
+
+  .btn:hover { background: #1e293b; }
+
+  /* ── CV Shell ────────────────────────────────── */
+  .cv {
+    background: #fff;
+    width: 210mm;
+    height: 297mm;
+    padding: 11mm 14mm;
+    box-shadow: 0 2px 32px rgba(0,0,0,0.10);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ── Header ─────────────────────────────────── */
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid #0f172a;
+    margin-bottom: 26px;
+  }
+
+  .name {
+    font-size: 27px;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.7px;
+    line-height: 1;
+  }
+
+  .contacts {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    font-size: 11.5px;
+    color: #475569;
+  }
+
+  .contacts a {
+    color: #475569;
+    text-decoration: none;
+  }
+
+  .contacts a:hover { color: #0f172a; }
+
+  .dot {
+    color: #94a3b8;
+    font-size: 9px;
+    position: relative;
+    top: -1px;
+  }
+
+  /* ── Two-column body ─────────────────────────── */
+  .body {
+    display: grid;
+    grid-template-columns: 172px 1fr;
+    gap: 0 30px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* ── Left column ─────────────────────────────── */
+  .left {
+    border-right: 1px solid #e2e8f0;
+    padding-right: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .left .section-title { margin-top: 0; }
+
+  /* ── Right column ────────────────────────────── */
+  .right {
+    padding-left: 4px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .exp-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 14px;
+    margin-top: 14px;
+  }
+
+  .exp-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .exp-list .exp-item {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .proj-section {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 14px;
+    margin-top: 6px;
+  }
+
+  .proj-section .section-title {
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+
+  /* ── Section titles ──────────────────────────── */
+  .section-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #334155;
+    margin-bottom: 9px;
+    margin-top: 20px;
+  }
+
+  .section-title:first-child { margin-top: 0; }
+
+  /* ── Education ───────────────────────────────── */
+  .edu-school {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #0f172a;
+    line-height: 1.3;
+  }
+
+  .edu-degree {
+    font-size: 11.5px;
+    color: #475569;
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  .edu-status {
+    font-size: 10.5px;
+    color: #475569;
+    margin-top: 3px;
+  }
+
+  /* ── Skills ──────────────────────────────────── */
+  .skill-group {
+    margin-bottom: 14px;
+  }
+
+  .skill-group:last-child { margin-bottom: 0; }
+
+  .skill-cat {
+    font-size: 9.5px;
+    font-weight: 600;
+    color: #1e293b;
+    letter-spacing: 0.4px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 0;
+  }
+
+  .tag {
+    font-size: 11px;
+    color: #334155;
+    line-height: 1.6;
+  }
+
+  .tag::after {
+    content: ' ·';
+    color: #94a3b8;
+    margin-right: 5px;
+  }
+
+  .tag:last-child::after {
+    content: '';
+    margin-right: 0;
+  }
+
+  /* ── Experience items ────────────────────────── */
+  .exp-item {
+    margin-bottom: 13px;
+    padding-bottom: 13px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .exp-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1px;
+  }
+
+  .exp-company {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0f172a;
+    letter-spacing: -0.2px;
+  }
+
+  .exp-date {
+    font-size: 10.5px;
+    color: #475569;
+    white-space: nowrap;
+    font-weight: 400;
+  }
+
+  .exp-role {
+    font-size: 11.5px;
+    color: #475569;
+    font-style: italic;
+    margin-bottom: 5px;
+    font-weight: 300;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    padding: 0;
+  }
+
+  .exp-bullets li {
+    font-size: 11.5px;
+    color: #374151;
+    line-height: 1.48;
+    padding-left: 11px;
+    position: relative;
+    margin-bottom: 3px;
+  }
+
+  .exp-bullets li:last-child { margin-bottom: 0; }
+
+  .exp-bullets li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: #475569;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  /* ── Languages ───────────────────────────────── */
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+
+  .lang-name {
+    font-size: 11.5px;
+    color: #334155;
+    font-weight: 500;
+  }
+
+  .lang-level {
+    font-size: 10.5px;
+    color: #475569;
+  }
+
+  /* ── Coursework ──────────────────────────────── */
+  .course-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .course-list span {
+    font-size: 11px;
+    color: #475569;
+    line-height: 1.4;
+  }
+
+  /* ── Open to ─────────────────────────────────── */
+  .open-to {
+    font-size: 10.5px;
+    color: #475569;
+    line-height: 1.55;
+  }
+
+  /* ── Print ───────────────────────────────────── */
+  @media print {
+    body {
+      background: white;
+      padding: 0;
+      display: block;
+    }
+
+    .toolbar { display: none; }
+
+    .cv {
+      box-shadow: none;
+      width: 210mm;
+      height: 297mm;
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <span class="toolbar-label">Open in browser → File → Print → Save as PDF &nbsp;or</span>
+  <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<div class="cv">
+
+  <!-- ── Header ── -->
+  <div class="header">
+    <div class="name">Muhammad Moeen Tariq</div>
+    <div class="contacts">
+      <a href="mailto:tariqmoeen31@gmail.com">tariqmoeen31@gmail.com</a>
+      <span class="dot">●</span>
+      <span>+92 335 051 6162</span>
+      <span class="dot">●</span>
+      <a href="https://www.linkedin.com/in/moeen-tariq-7a7799259/" target="_blank">linkedin.com/in/moeen-tariq</a>
+      <span class="dot">●</span>
+      <a href="https://github.com/moeentariq1" target="_blank">github.com/moeentariq1</a>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- ── Left ── -->
+    <div class="left">
+
+      <div>
+        <div class="section-title">Education</div>
+        <div class="edu-school">FAST University</div>
+        <div class="edu-degree">BS Data Science</div>
+        <div class="edu-status">Final Semester &nbsp;·&nbsp; Graduating 2026</div>
+      </div>
+
+      <div>
+        <div class="section-title">Stack</div>
+        <div class="skill-group">
+          <div class="skill-cat">AI / LLMs</div>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">LangChain</span>
+            <span class="tag">LLMs</span>
+            <span class="tag">Sentence Transformers</span>
+            <span class="tag">MCP</span>
+            <span class="tag">RAG</span>
+            <span class="tag">VAPI</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-cat">Backend</div>
+          <div class="tags">
+            <span class="tag">FastAPI</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Supabase</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-cat">ML / Data</div>
+          <div class="tags">
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">TensorFlow</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-cat">Frontend</div>
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">Next.js</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">Tools</div>
+        <div class="tags">
+          <span class="tag">Git</span>
+          <span class="tag">Make.com</span>
+          <span class="tag">Postman</span>
+          <span class="tag">Hugging Face</span>
+          <span class="tag">OpenRouter</span>
+          <span class="tag">Vercel</span>
+          <span class="tag">Supabase</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">Relevant Coursework</div>
+        <div class="course-list">
+          <span>Machine Learning</span>
+          <span>Deep Learning</span>
+          <span>Data Structures</span>
+          <span>Database Systems</span>
+          <span>Natural Language Processing</span>
+          <span>Probability &amp; Statistics</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">Open to</div>
+        <div class="open-to">AI engineering and applied AI product roles.</div>
+      </div>
+
+    </div>
+
+    <!-- ── Right ── -->
+    <div class="right">
+
+      <div class="proj-section" style="border-top:none; padding-top:0; margin-top:0;">
+        <div class="section-title">Final Year Project</div>
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-company">ToonCraft</span>
+            <span class="exp-date">2026</span>
+          </div>
+          <div class="exp-role">Next.js &nbsp;·&nbsp; Django &nbsp;·&nbsp; ComfyUI &nbsp;·&nbsp; Firebase</div>
+          <ul class="exp-bullets">
+            <li>End-to-end AI video generator that converts story prompts into 8-scene storyboards via Llama 3.3 70B, generates scene images via Flux 1-Dev with character LoRA, animates them with Wan 2.2 image-to-video, and compiles the final MP4 with FFmpeg</li>
+            <li>Orchestrated multi-model ComfyUI pipeline via WebSockets, with Firebase Auth, PostgreSQL, and Next.js 15 App Router</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-section">
+        <div class="section-title">Experience</div>
+        <div class="exp-list">
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <span class="exp-company">Freelance AI Developer</span>
+              <span class="exp-date">May 2025 – May 2026 &nbsp;·&nbsp; USA &amp; Germany</span>
+            </div>
+            <div class="exp-role">Independent &nbsp;·&nbsp; Remote</div>
+            <ul class="exp-bullets">
+              <li>USA (May – Aug 2025): Built an insurance comparison MVP that parses publicly available drug and procedure pricing files, structures cost comparisons across plans, and integrates an AI assistant where users describe symptoms to get relevant coverage and medication guidance</li>
+              <li>Germany (Feb – May 2026): Developed a full-stack dual-sided job marketplace where employers post listings and candidates browse daily-fetched jobs via third-party APIs, upload CVs, and generate tailored CVs per application, fully localised in English and German using i18n</li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <span class="exp-company">AutoAML</span>
+              <span class="exp-date">Aug – Dec 2025 &nbsp;·&nbsp; Remote</span>
+            </div>
+            <div class="exp-role">AI Engineer &nbsp;·&nbsp; Contract</div>
+            <ul class="exp-bullets">
+              <li>Built and integrated features across the frontend and backend of an intelligent compliance platform</li>
+              <li>Streamlined user authentication flows and improved UX across core workflows</li>
+              <li>Integrated LLMs to enhance AI-driven compliance automation capabilities</li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <span class="exp-company">U Microfinance Bank</span>
+              <span class="exp-date">Jul – Aug 2025 &nbsp;·&nbsp; Islamabad</span>
+            </div>
+            <div class="exp-role">AI Intern &nbsp;·&nbsp; Risk Department</div>
+            <ul class="exp-bullets">
+              <li>Built an end-to-end auditing tool using Sentence Transformers + an LLM to validate SOC analyst comments against case-closing playbooks, integrated live via the bank's internal API</li>
+              <li>Built a Model Context Protocol (MCP) interface for the team to query an internal vulnerability database in natural language</li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <span class="exp-company">ByteBricks</span>
+              <span class="exp-date">Nov 2024 – Apr 2025</span>
+            </div>
+            <div class="exp-role">AI Automation Associate</div>
+            <ul class="exp-bullets">
+              <li>Designed Make.com pipelines for competitor monitoring, content publishing, and AI-driven WordPress posting via RSS</li>
+              <li>Handled client acquisition, technical scoping, and lead generation alongside delivery work</li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <span class="exp-company">ByteBricks</span>
+              <span class="exp-date">Jun – Aug 2024</span>
+            </div>
+            <div class="exp-role">AI Intern</div>
+            <ul class="exp-bullets">
+              <li>Built LangChain + FastAPI chatbots with external API integrations and conversation memory for customer support and lead generation</li>
+              <li>Developed VAPI voice assistants for appointment scheduling using domain-specific knowledge bases</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
