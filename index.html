@@ -87,15 +87,29 @@
   .contacts a {
     color: #475569;
     text-decoration: none;
+    position: relative;
+    transition: color 0.2s;
   }
 
-  .contacts a:hover { color: #0f172a; }
+  .contacts a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 0;
+    height: 1px;
+    background: #1e3a8a;
+    transition: width 0.25s ease;
+  }
+
+  .contacts a:hover { color: #1e3a8a; }
+  .contacts a:hover::after { width: 100%; }
 
   .sep { color: #94a3b8; }
 
   .header-rule {
     border: none;
-    border-top: 1.5px solid #0f172a;
+    border-top: 1.5px solid #1e3a8a;
     margin: 7px 0 0;
   }
 
@@ -113,7 +127,7 @@
 
   .section-rule {
     border: none;
-    border-top: 1px solid #0f172a;
+    border-top: 1px solid #1e3a8a;
     margin-bottom: 6px;
   }
 
@@ -233,7 +247,7 @@
     <div class="contacts">
       <a href="mailto:tariqmoeen31@gmail.com">tariqmoeen31@gmail.com</a>
       <span class="sep">|</span>
-      <span>+92 335 051 6162</span>
+      <a href="tel:+923350516162">+92 335 051 6162</a>
       <span class="sep">|</span>
       <a href="https://www.linkedin.com/in/moeen-tariq-7a7799259/" target="_blank">linkedin.com/in/moeen-tariq</a>
       <span class="sep">|</span>
